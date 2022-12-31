@@ -1,0 +1,38 @@
+nom@startuml
+'https://plantuml.com/class-diagram
+
+
+class établissement {
+- nom
+- slug
+- description
+- numéro de téléphone
+- numéroRue
+- librue
+- **ville**
+- adresse email
+- image
+- actif
+- accueil
+- date de création
+- date de modification
+- **catégories**
+
+}
+class ville {
+- nom
+- code postal
+- nom de département
+- numéro de département
+- nom de région
+}
+
+class catégorie {
+- nom
+- date de création
+}
+
+établissement "0..*" -->"1..1"ville
+établissement "0..*"-->"1..*"catégorie
+
+@enduml
