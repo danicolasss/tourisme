@@ -3,7 +3,6 @@
 {% block title %}Connexion{% endblock %}
 
 {% block body %}
-
     <section class="container my-3">
         <div class="row">
             <div class="col">
@@ -14,7 +13,7 @@
 
                     {% if app.user %}
                         <div class="mb-3">
-                            vous etes connecte comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me deconnecter</a>
+                            Vous êtes connecté(e) comme {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Me déconnecter</a>
                         </div>
                     {% endif %}
 
@@ -31,7 +30,6 @@
                     {#
                     Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
                     See https://symfony.com/doc/current/security/remember_me.html
-
                     <div class="checkbox mb-3">
                         <label>
                             <input type="checkbox" name="_remember_me"> Remember me
@@ -42,7 +40,11 @@
                     <button class="btn btn-lg btn-primary mt-3" type="submit">
                         Me connecter
                     </button>
+
+
+
                 </form>
+
             </div>
         </div>
     </section>

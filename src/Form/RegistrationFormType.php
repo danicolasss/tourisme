@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
@@ -18,19 +19,40 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class,[
-                'attr'=>[
-                    'class'=>'form-control'
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'form-control'
                 ],
-
+                'label' => 'E-mail'
             ])
-            ->add('agreeTerms', CheckboxType::class, [
+            ->add('nom', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Nom'
+            ])
+            ->add('prenom', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Prénom'
+            ])
+            ->add('pseudo', TextType::class, [
+                'attr' => [
+                    'class' => 'form-control'
+                ],
+                'label' => 'Pseudo'
+            ])
+
+
+            ->add('RGPDConsent', CheckboxType::class, [
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
                         'message' => 'You should agree to our terms.',
                     ]),
                 ],
+                'label' => 'En m\'inscrivant à ce site j\'accepte...'
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -38,7 +60,7 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'attr' => [
                     'autocomplete' => 'new-password',
-                    'class'=>'form-control'
+                    'class' => 'form-control'
                 ],
                 'constraints' => [
                     new NotBlank([
@@ -51,6 +73,7 @@ class RegistrationFormType extends AbstractType
                         'max' => 4096,
                     ]),
                 ],
+                'label' => 'Mot de passe'
             ])
         ;
     }
