@@ -4,34 +4,39 @@
 
 {% block body %}
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                {% for favori in favoris %}
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
-                            <div class="card-body">
-                                <h2>{{ favori.nom }}</h2>
-                                <p class="card-text">{{ favori.description }}</p>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a href="/{{favori.slug}}" class="btn btn-sm btn-outline-secondary">Details</a>
-                                        <form action="/favoris" method="POST">
-                                            <input type="number" name="id" hidden value="{{ favori.id }}">
-                                            <button name="favori" type="submit" class="btn btn-sm btn-outline-secondary">favori</button>
-                                        </form>
+    {% if  favoris|length <1 %}
+        <h2>Pas d'etablissement mis en favoris</h2>
+        {% else %}
+            <div class="album py-5 bg-light">
+                <div class="container">
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        {% for favori in favoris %}
+                            <div class="col">
+                                <div class="card shadow-sm">
+                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+                                    <div class="card-body">
+                                        <h2>{{ favori.nom }}</h2>
+                                        <p class="card-text">{{ favori.description }}</p>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <a href="/{{favori.slug}}" class="btn btn-sm btn-outline-secondary">Details</a>
+                                                <form action="/favoris" method="POST">
+                                                    <input type="number" name="id" hidden value="{{ favori.id }}">
+                                                    <button name="favori" type="submit" class="btn btn-sm btn-outline-secondary">favori</button>
+                                                </form>
 
 
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        {% endfor %}
                     </div>
-                {% endfor %}
+                </div>
             </div>
-        </div>
-    </div>
+    {% endif %}
+
 
 
 {% endblock %}
