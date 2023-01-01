@@ -18,8 +18,8 @@ class EtablissementController extends AbstractController
         $this->etablissementRepository = $etablissementRepository;
     }
 
-    #[Route('/etablissement/{slug}', name: 'app_etablissement')]
-    public function details($slug): Response
+    #[Route('/{slug}', name: 'app_etablissement')]
+    public function details(string $slug): Response
     {
 
         $etablissement = $this->etablissementRepository->findOneBy(['slug' => $slug]);
