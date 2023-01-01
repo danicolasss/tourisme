@@ -42,6 +42,8 @@ class user {
 - date de modification
 }
 
+établissement "0..*" <-->"0..*"user
+
 établissement "0..*" -->"1..1"ville
 établissement "0..*"-->"1..*"catégorie
 
