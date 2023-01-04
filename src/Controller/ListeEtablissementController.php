@@ -20,7 +20,7 @@ class ListeEtablissementController extends AbstractController
     }
 
 
-    #[Route('/etablissements', name: 'app_etablissement')]
+    #[Route('/etablissements', name: 'app_etablissements')]
     public function index(): Response
     {
         $etablissements = $this->etablissementRepository->findAll();

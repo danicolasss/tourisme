@@ -15,6 +15,32 @@
                     <li>Téléphone : {{ etablissement.numTel }}</li>
                     <li>Email : {{ etablissement.adrMail }}</li>
                 </ul>
+                <h3>Catégorie(s)</h3>
+                <ul>
+                    {% for categorie in etablissement.categorie %}
+                    <li>Catégorie n°{{ categorie.id }} : {{ categorie.nom}}</li>
+                    {% endfor %}
+                </ul>
+                <h3>Informations de la ville</h3>
+                <ul>
+                    <li>Nom de la ville : {{ etablissement.ville.nom}}</li>
+                    <li>Code postale de la ville : {{ etablissement.ville.cp}}</li>
+                    <li>Numéro et nom du département : {{ etablissement.ville.numDp}} {{ etablissement.ville.nomDp}}</li>
+                    <li>Nom de la région : {{ etablissement.ville.nomR}}</li>
+                </ul>
+                {% if app.user %}
+                    {% if app.user.favoris %}
+                    <form action="/favoris" method="POST">
+                        <input type="number" name="id" hidden value="{{ etablissement.id }}">
+                        <button name="favori" type="submit" class="btn btn-sm btn-outline-secondary">Metre en favori</button>
+                    </form>
+                    {% else%}
+                        <form action="/favoris" method="POST">
+                            <input type="number" name="id" hidden value="{{ etablissement.id }}">
+                            <button name="favori" type="submit" class="btn btn-sm btn-outline-secondary">Enlever des favoris</button>
+                        </form>
+                    {% endif %}
+                {% endif %}
             </div>
 
         </div>

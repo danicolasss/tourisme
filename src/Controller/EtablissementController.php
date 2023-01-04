@@ -18,7 +18,7 @@ class EtablissementController extends AbstractController
         $this->etablissementRepository = $etablissementRepository;
     }
 
-    #[Route('/{slug}', name: 'app_etablissement')]
+    #[Route('etablissement/{slug}', name: 'app_etablissement')]
     public function details(string $slug): Response
     {
 
