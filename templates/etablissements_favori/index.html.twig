@@ -19,7 +19,7 @@
                                         <p class="card-text">{{ favori.description }}</p>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
-                                                <a href="/{{favori.slug}}" class="btn btn-sm btn-outline-secondary">Details</a>
+                                                <a href="/etablissement/{{ favori.slug }}" class="btn btn-sm btn-outline-secondary">Details</a>
                                                 <form action="/favoris" method="POST">
                                                     <input type="number" name="id" hidden value="{{ favori.id }}">
                                                     <button name="favori" type="submit" class="btn btn-sm btn-outline-secondary">favori</button>
