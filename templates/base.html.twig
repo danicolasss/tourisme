@@ -33,7 +33,12 @@
 
                 <div class="text-end">
                     {% if app.user %}
+                        {% if app.user.roles[0] == 'ROLE_ADMIN' %}
+                            <a href="/admin" class="btn btn-warning">Back office</a>
+                        {% endif %}
+
                         <a href="/logout" class="btn btn-warning">Se deconnecter</a>
+                        
                     {% else %}
                         <a href="/connexion" class="btn btn-outline-light me-2">Se connecter</a>
                         <a href="/inscription" class="btn btn-outline-light me-2">Se cree un compte</a>
