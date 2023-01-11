@@ -2,6 +2,7 @@
 
 namespace App\Security;
 
+use App\Entity\User;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -39,7 +40,14 @@ class UsersAuthenticator extends AbstractLoginFormAuthenticator
             ]
         );
     }
+    public function checkActiveAccount(User $user)
+    {
+        if ($user->isActif()) {
+            return new RedirectResponse($this->urlGenerator->generate('app_accuiel'));
+        }
+        return $this->urlGenerator->generate(self::LOGIN_ROUTE);
 
+    }
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {

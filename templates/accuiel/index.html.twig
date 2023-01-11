@@ -1,20 +1,46 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccuielController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="album py-5 bg-light">
+        <div class="container">
+            <h2>Liste des établissements actif mis en avant par région</h2>
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for etablissement in Etablissements %}
+                    <div class="col">
+                        <div class="card shadow-sm">
+                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em"></text></svg>
+                            <div class="card-body">
+                                <h2>{{ etablissement.nom }}</h2>
+                                <p class="card-text">{{ etablissement.description }}</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a href="etablissement/{{etablissement.slug}}" class="btn btn-sm btn-outline-secondary">Details</a>
+                                        {% if app.user %}
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+                                            <form action="/favoris" method="POST">
+                                                <input type="number" name="id" hidden value="{{ etablissement.id }}">
+                                                {% if etablissement.favoris is not empty %}
+                                                    <button name="favori" type="submit" class="btn btn-sm btn-outline-secondary">Enlever des favoris </button>
+                                                    <i class="fa-solid fa-star"></i>
+                                                {% else%}
+                                                    <button name="favori" type="submit" class="btn btn-sm btn-outline-secondary">metre dans les favoris </button>
+                                                    <i class="fa-regular fa-star"></i>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/miss-/OneDrive/Bureau/symfony project/symfony_project/src/Controller/AccuielController.php'|file_link(0) }}">src/Controller/AccuielController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/miss-/OneDrive/Bureau/symfony project/symfony_project/templates/accuiel/index.html.twig'|file_link(0) }}">templates/accuiel/index.html.twig</a></code></li>
-    </ul>
-</div>
+                                                {% endif %}
+                                            </form>
+
+                                        {% endif %}
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
